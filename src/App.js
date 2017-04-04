@@ -1,110 +1,32 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import './App.css';
+import ChannelSection from './components/channels/ChannelSection.js';
 
-
-let channels = [];
-
-let channelComponents = channels.map(function(channel)
-{
-    return <Channel name={channel.name} />
-});
-
-class Channel extends Component {
-    onClick(){
-        console.log('I was clicked ', this.props.name);
-    }
-
-  render() {
-    return (
-        <li onClick={this.onClick.bind(this)}>{this.props.name}</li>
-    );
-  }
-}
-
-class ChannelList extends React.Component{
-    render(){
-        return (
-            <ul>
-                {this.props.channels.map( channel => {
-                    return (
-                       <Channel name={channel.name}/>
-                    )}
-                )}
-            </ul>
-        )
-    }
-}
-
-class ChannelForm extends React.Component{
-
-    constructor(props){
-        super(props);
-        this.state = {};
-    }
-
-    onChange(e){
-        this.setState({
-            channelName: e.target.value
-        });
-        // console.log(e.target.value)
-    }
-
-    onSubmit(e){
-        let {channelName} = this.state;
-        console.log(channelName);
-        this.setState({
-            channelName: ''
-        });
-        this.props.addChannel(channelName);
-        e.preventDefault();
-    }
-
-    render(){
-        return(
-            <form onSubmit={this.onSubmit.bind(this)}>
-                <input type="text"
-                    onChange={this.onChange.bind(this)}
-                       value={this.state.channelName}
-                />
-            </form>
-        )
-    }
-}
-
-
-class ChannelSection extends React.Component{
-
+class App extends Component{
     constructor(props){
         super(props);
         this.state = {
-            channels: [
-                {name: 'Hardware Support'},
-                {name: 'Software Support'}
-
-            ]
+            channels: []
         };
     }
-
     addChannel(name){
         let {channels} = this.state;
-        channels.push({name: name});
-        this.setState({
-            channels: channels
-        })
+        channels.push({id: channels.length, name});
+        this.setState({channels});
+        // TODO: Send to sever
     }
-
+    setChannel(activeChannel){
+        this.setState({activeChannel});
+        // TODO: Get Channels Messages
+    }
     render(){
         return(
-            <div>
-                <ChannelList channels={this.state.channels} />
-                <ChannelForm addChannel={this.addChannel.bind(this)} />
-            </div>
+            <ChannelSection
+                channels={this.state.channels}
+                setChannel={this.addChannel.bind(this)}
+                addChannel={this.setChannel.bind(this)}
+            />
         )
     }
 }
 
-ReactDOM.render(
-    <ChannelSection />,
-    document.getElementById('app')
-);
+export default App;
