@@ -1,5 +1,5 @@
 /**
- * Created by nicholas on 4/4/17.
+ * Created by nicholas on 4/7/17.
  */
 import React from 'react';
 
@@ -21,7 +21,7 @@ class UserForm extends React.Component{
                         className="form-control"
                         placeholder="Set Your Name..."
                     />
-                </div>)
+                </div>
             </form>
         )
     }

@@ -7,7 +7,10 @@ class App extends Component{
     constructor(props){
         super(props);
         this.state = {
-            channels: []
+            channels: [],
+            users: [],
+            messages: [],
+            activeChannel: {}
         };
     }
     addChannel(name){
@@ -28,9 +31,9 @@ class App extends Component{
     }
     addMessage(body){
         let {messages, users} = this.state;
-        let createAt = new Date;
+        let createdAt = new Date;
         let author = users.length > 0 ? users[0].name : 'anonymous';
-        messages.push({id: messages.length, body, createAt, author});
+        messages.push({id: messages.length, body, createdAt, author});
         this.setState({messages});
         // TODO: Send to server
     }

@@ -1,5 +1,5 @@
 /**
- * Created by nicholas on 4/6/17.
+ * Created by nicholas on 4/7/17.
  */
 import React, {Component} from 'react';
 
@@ -17,10 +17,10 @@ class MessageForm extends Component{
         if(this.props.activeChannel.id !== undefined){
             input = (
                 <input
-                  ref="message"
-                  type="text"
-                  className="form-control"
-                  placeholder="Add Message..."
+                    ref="message"
+                    type="text"
+                    className="form-control"
+                    placeholder="Add Message..."
                 />
             )
         }
@@ -34,7 +34,9 @@ class MessageForm extends Component{
     }
 }
 
-Component.PropTypes = {
+MessageForm.PropTypes = {
     activeChannel: React.PropTypes.object.isRequired,
-    addMessgae: React.PropTypes.func.isRequired
+    addMessage: React.PropTypes.func.isRequired
 };
+
+export default MessageForm;

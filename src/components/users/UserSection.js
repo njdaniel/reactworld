@@ -1,5 +1,5 @@
 /**
- * Created by nicholas on 4/4/17.
+ * Created by nicholas on 4/7/17.
  */
 import React, {Component} from 'react';
 import UserList from './UserList';
@@ -22,6 +22,8 @@ class UserSection extends Component{
 }
 
 UserSection.PropTypes = {
-    user: React.PropTypes.array.isRequired,
+    users: React.PropTypes.array.isRequired,
     setUserName: React.PropTypes.func.isRequired
 };
+
+export default UserSection;
