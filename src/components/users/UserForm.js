@@ -21,7 +21,7 @@ class UserForm extends React.Component{
                         className="form-control"
                         placeholder="Set Your Name..."
                     />
-                </div>)
+                </div>
             </form>
         )
     }
