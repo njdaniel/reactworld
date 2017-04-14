@@ -23,6 +23,7 @@ class Socket {
     }
     message(e){
         try{
+            console.log(e.data);
             const message = JSON.parse(e.data);
             this.ee.emit(message.name, message.data);
         }

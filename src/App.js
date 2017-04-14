@@ -29,7 +29,13 @@ class App extends Component{
     onMessageAdd(message){
         let {messages} = this.state;
         messages.push(message);
-        this.setState({messages});
+        console.log("new message: " + JSON.stringify(message));
+        console.log("active channel: ");
+        console.dir(this.state.activeChannel);
+        this.setState({messages}, () => {
+            console.log("async messages callback:");
+            console.dir(this.state.messages);
+        });
     }
     onRemoveUser(removeUser){
         let {users} = this.state;
@@ -70,9 +76,15 @@ class App extends Component{
         this.socket.emit('channel add', {name});
     }
     setChannel(activeChannel){
-        this.setState({activeChannel});
+        console.log("set active channel to: ")
+        console.dir(activeChannel)
+        this.setState({activeChannel}, () => {
+            console.log("async: ");
+            console.dir(this.state);});
+
         this.socket.emit('message unsubscribe');
         this.setState({message: []});
+        console.dir(this.state)
         this.socket.emit('message subscribe',
             {channelId: activeChannel.id});
 
